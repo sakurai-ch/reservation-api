@@ -11,42 +11,22 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class, 'user_id', 'user_id');
-    }
-
     public function stores()
     {
-        return $this->belongsToMany(Store::class, 'favorites', 'user_id', 'store_id');
+        return $this->belongsToMany(Store::class, 'favorites');
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name',
+        'user_name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

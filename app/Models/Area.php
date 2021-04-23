@@ -9,8 +9,8 @@ class Area extends Model
 {
     use HasFactory;
 
-    public function stores()
+    public function store()
     {
-        return $this->hasMany(Store::class, 'area_id', 'area_id');
+        return $this->hasMany(Store::class);
     }
 }

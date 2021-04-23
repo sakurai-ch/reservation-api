@@ -13,4 +13,9 @@ class Favorite extends Model
     {
         return $this->belongsToMany(User::class)->using(Store::class);
     }
+
+    protected $fillable = [
+        "user_id",
+        "store_id",
+    ];
 }

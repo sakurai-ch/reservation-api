@@ -7,15 +7,10 @@ use App\Models\Store;
 
 class StoresTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $param = [
-            'store_id' => 1,
+            'id' => 1,
             'store_name' => '仙人',
             'area_id' => 1,
             'genre_id' => 1,
@@ -25,7 +20,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
         
         $param = [
-            'store_id' => 2,
+            'id' => 2,
             'store_name' => '牛助',
             'area_id' => 2,
             'genre_id' => 2,
@@ -35,7 +30,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 3,
+            'id' => 3,
             'store_name' => '戦慄',
             'area_id' => 3,
             'genre_id' => 3,
@@ -45,7 +40,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 4,
+            'id' => 4,
             'store_name' => 'ルーク',
             'area_id' => 1,
             'genre_id' => 4,
@@ -55,7 +50,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 5,
+            'id' => 5,
             'store_name' => '志摩屋',
             'area_id' => 3,
             'genre_id' => 5,
@@ -65,7 +60,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 6,
+            'id' => 6,
             'store_name' => '香',
             'area_id' => 1,
             'genre_id' => 2,
@@ -75,7 +70,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 7,
+            'id' => 7,
             'store_name' => 'JJ',
             'area_id' => 2,
             'genre_id' => 4,
@@ -85,7 +80,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 8,
+            'id' => 8,
             'store_name' => 'らーめん極み',
             'area_id' => 1,
             'genre_id' => 5,
@@ -95,7 +90,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 9,
+            'id' => 9,
             'store_name' => '鳥雨',
             'area_id' => 2,
             'genre_id' => 3,
@@ -105,7 +100,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 10,
+            'id' => 10,
             'store_name' => '築地色合',
             'area_id' => 1,
             'genre_id' => 1,
@@ -115,7 +110,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 11,
+            'id' => 11,
             'store_name' => '晴海',
             'area_id' => 2,
             'genre_id' => 2,
@@ -125,7 +120,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 12,
+            'id' => 12,
             'store_name' => '三子',
             'area_id' => 3,
             'genre_id' => 2,
@@ -135,7 +130,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 13,
+            'id' => 13,
             'store_name' => '八戒',
             'area_id' => 1,
             'genre_id' => 3,
@@ -145,7 +140,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 14,
+            'id' => 14,
             'store_name' => '福助',
             'area_id' => 2,
             'genre_id' => 1,
@@ -155,7 +150,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 15,
+            'id' => 15,
             'store_name' => 'ラー北',
             'area_id' => 1,
             'genre_id' => 5,
@@ -165,7 +160,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 16,
+            'id' => 16,
             'store_name' => '翔',
             'area_id' => 2,
             'genre_id' => 3,
@@ -175,7 +170,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 17,
+            'id' => 17,
             'store_name' => '経緯',
             'area_id' => 1,
             'genre_id' => 1,
@@ -185,7 +180,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 18,
+            'id' => 18,
             'store_name' => '漆',
             'area_id' => 1,
             'genre_id' => 2,
@@ -195,7 +190,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 19,
+            'id' => 19,
             'store_name' => 'THE TOOL',
             'area_id' => 3,
             'genre_id' => 4,
@@ -205,7 +200,7 @@ class StoresTableSeeder extends Seeder
         Store::insert($param);
 
         $param = [
-            'store_id' => 20,
+            'id' => 20,
             'store_name' => '木船',
             'area_id' => 2,
             'genre_id' => 1,

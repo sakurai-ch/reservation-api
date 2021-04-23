@@ -11,6 +11,6 @@ class Genre extends Model
 
     public function stores()
     {
-        return $this->hasMany(Store::class, 'genre_id', 'genre_id');
+        return $this->hasMany(Store::class);
     }
 }
