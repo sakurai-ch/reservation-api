@@ -11,21 +11,24 @@ class Store extends Model
 
     public static function index_stores($user_data)
     {
-        $param = Store::select('id', 'store_name', 'area_id', 'genre_id', 'image_url')->get();
-        foreach ($param as $item) {
-            $item['area_name'] = $item->area()->value('area_name');
-            $item['genre_name'] = $item->genre()->value('genre_name');
-            $item['user_favorite'] = $item->users()->where('user_id', $user_data->user_id)->exists();
-        }
+        $user_favorites = Favorite::where('user_id', $user_data->user_id);
+        $param = Store::select('stores.id', 'store_name', 'area_id', 'genre_id', 'image_url', 'user_favorites.user_id')
+            ->with('area:id,area_name', 'genre:id,genre_name')
+            ->leftJoinSub($user_favorites ,'user_favorites',function ($join) {
+                $join->on('stores.id', '=', 'user_favorites.store_id');
+            })
+            ->get();
+        // foreach ($param as $item) {
+        //     $item['user_favorite'] = $item->users()->where('user_id', $user_data->user_id)->exists();
+        // }
         return $param;
     }
 
     public static function show_store($user_data, $store_id)
     {
-        $param = Store::find($store_id);
-        $param['area_name'] = $param->area()->value('area_name');
-        $param['genre_name'] = $param->genre()->value('genre_name');
-        $param['user_favorite'] = $param->users()->where('user_id', $user_data->user_id)->exists();
+        $param = Store::with('area:id,area_name', 'genre:id,genre_name')->find($store_id);
+        $param['user_id'] = $param->users()->where('user_id', $user_data->user_id)->value('user_id');
+        // $param['user_favorite'] = $param->users()->where('user_id', $user_data->user_id)->exists();
         return $param;
     }
 
@@ -43,4 +46,13 @@ class Store extends Model
     {
         return $this->belongsToMany(User::class, 'favorites');
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorites::class);
+    }
+
+    protected $fillable = [
+        "store_name",
+    ];
 }

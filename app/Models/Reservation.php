@@ -16,6 +16,7 @@ class Reservation extends Model
         $param = Reservation::where('date', '>', $yesterday)
             ->where('user_id', $reservation_data->user_id)
             ->select('id', 'user_id', 'store_id', 'date', 'time', 'num_of_users')
+            ->with('store:id,store_name')
             ->get();
         return $param;
     }
@@ -30,6 +31,11 @@ class Reservation extends Model
             "num_of_users" => $reservation_data->num_of_users,
         ]);
         return $param;
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
     }
 
     protected $fillable = [

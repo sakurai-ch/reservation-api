@@ -15,8 +15,8 @@ class Genre extends Model
         return $param;
     }
 
-    public function stores()
-    {
-        return $this->hasMany(Store::class);
-    }
+    // public function stores()
+    // {
+    //     return $this->hasMany(Store::class);
+    // }
 }
