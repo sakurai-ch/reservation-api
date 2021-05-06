@@ -4,19 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
     public function get(Request $request)
     {
         if ($request->has('user_id')) {
-            // $items = User::find($request->user_id);
-            // $param = [
-            //     'id' => $items->id,
-            //     'user_name' => $items->user_name,
-            //     'email' => $items->email
-            // ];
             $param = User::get_users($request);
             return response()->json([
                 'message' => 'User got successfully',
@@ -31,12 +24,6 @@ class UsersController extends Controller
     {
         $check = User::where('email', $request->email)->exists();
         if(!$check){
-            // $hashed_password = Hash::make($request->password);
-            // $param = User::create([
-            //     'user_name' => $request->user_name,
-            //     'email' => $request->email,
-            //     'password' => $hashed_password,
-            // ]);
             $param = User::post_user($request);
             return response()->json([
                 'message' => 'User created successfully',

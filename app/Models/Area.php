@@ -15,8 +15,4 @@ class Area extends Model
         return $param;
     }
 
-    // public function store()
-    // {
-    //     return $this->hasMany(Store::class);
-    // }
 }

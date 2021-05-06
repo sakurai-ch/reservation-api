@@ -18,9 +18,6 @@ class Store extends Model
                 $join->on('stores.id', '=', 'user_favorites.store_id');
             })
             ->get();
-        // foreach ($param as $item) {
-        //     $item['user_favorite'] = $item->users()->where('user_id', $user_data->user_id)->exists();
-        // }
         return $param;
     }
 
@@ -28,7 +25,6 @@ class Store extends Model
     {
         $param = Store::with('area:id,area_name', 'genre:id,genre_name')->find($store_id);
         $param['user_id'] = $param->users()->where('user_id', $user_data->user_id)->value('user_id');
-        // $param['user_favorite'] = $param->users()->where('user_id', $user_data->user_id)->exists();
         return $param;
     }
 

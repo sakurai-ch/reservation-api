@@ -14,9 +14,4 @@ class Genre extends Model
         $param = Genre::select('id', 'genre_name')->get();
         return $param;
     }
-
-    // public function stores()
-    // {
-    //     return $this->hasMany(Store::class);
-    // }
 }

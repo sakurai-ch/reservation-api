@@ -12,20 +12,13 @@ class Favorite extends Model
     public static function post_favorite($favorite_data)
     {
         User::find($favorite_data->user_id)->stores()->attach($favorite_data->store_id);
-        $param = Favorite::where('user_id', $favorite_data->user_id)->where('store_id', $favorite_data->store_id)->get();
-        // $param = Favorite::create([
-        //     'user_id' => $favorite_data->user_id,
-        //     'store_id' => $favorite_data->store_id,
-        // ]);
-        return $param;
+        // $param = Favorite::where('user_id', $favorite_data->user_id)->where('store_id', $favorite_data->store_id)->get();
+        // return $param;
     }
 
     public static function delete_favorite($favorite_data)
     {
         User::find($favorite_data->user_id)->stores()->detach($favorite_data->store_id);
-        // Favorite::where('store_id', $favorite_data->store_id)
-        //     ->where('user_id', $favorite_data->user_id)
-        //     ->delete();
     }
 
     protected $fillable = [
