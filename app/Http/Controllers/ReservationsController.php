@@ -27,10 +27,18 @@ class ReservationsController extends Controller
 
     public function delete(Request $request)
     {
-        Reservation::where('id', $request->reservation_id)
-            ->delete();
+        Reservation::delete_reservation($request);
         return response()->json([
             'message' => 'Reservation deleted successfully',
+        ], 200);
+    }
+
+    public function patch(Request $request)
+    {
+        $param = Reservation:: patch_reservation($request);
+        return response()->json([
+            'message' => 'Reservation updated successfully',
+            'data' => $param
         ], 200);
     }
 

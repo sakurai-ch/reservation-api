@@ -22,6 +22,7 @@ Route::delete('/v1/favorite', [FavoritesController::class, 'delete']);
 Route::post('/v1/reservation', [ReservationsController::class, 'post']);
 Route::delete('/v1/reservation', [ReservationsController::class, 'delete']);
 Route::get('/v1/reservation', [ReservationsController::class, 'get']);
+Route::patch('/v1/reservation', [ReservationsController::class, 'patch']);
 Route::get('/v1/area', [AreasController::class, 'get']);
 Route::get('/v1/genre', [GenresController::class, 'get']);
 

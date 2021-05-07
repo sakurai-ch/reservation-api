@@ -33,6 +33,24 @@ class Reservation extends Model
         return $param;
     }
 
+    public static function delete_reservation($reservation_data)
+    {
+        Reservation::where('id', $reservation_data->reservation_id)
+            ->delete();
+    }
+
+    public static function patch_reservation($reservation_data)
+    {
+        Reservation::where('id', $reservation_data->reservation_id)
+            ->update([
+                'date' => $reservation_data->date,
+                'time' => $reservation_data->time,
+                'num_of_users' => $reservation_data->num_of_users
+            ]);
+        $param = Reservation::find($reservation_data->reservation_id);
+        return $param;
+    }
+
     public function store()
     {
         return $this->belongsTo(Store::class);
