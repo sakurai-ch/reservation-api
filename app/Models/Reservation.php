@@ -12,10 +12,11 @@ class Reservation extends Model
 
     public static function get_reservation($reservation_data)
     {
-        $yesterday = Carbon::now()->addDay(-1);
-        $param = Reservation::where('date', '>', $yesterday)
+        $lastManthDate = Carbon::now()->subMonth(1);
+        $param = Reservation::where('date', '>', $lastManthDate)
             ->where('user_id', $reservation_data->user_id)
-            ->select('id', 'user_id', 'store_id', 'date', 'time', 'num_of_users')
+            ->where('rating', null)
+            ->select('id', 'user_id', 'store_id', 'date', 'time', 'num_of_users', 'rating')
             ->with('store:id,store_name')
             ->get();
         return $param;
@@ -45,7 +46,8 @@ class Reservation extends Model
             ->update([
                 'date' => $reservation_data->date,
                 'time' => $reservation_data->time,
-                'num_of_users' => $reservation_data->num_of_users
+                'num_of_users' => $reservation_data->num_of_users,
+                'rating' => $reservation_data->rating
             ]);
         $param = Reservation::find($reservation_data->reservation_id);
         return $param;
@@ -61,6 +63,7 @@ class Reservation extends Model
         "store_id",
         "date",
         "time",
-        "num_of_users"
+        "num_of_users",
+        "rating"
     ];
 }

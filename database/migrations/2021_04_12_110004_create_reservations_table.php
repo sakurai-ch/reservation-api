@@ -17,6 +17,7 @@ class CreateReservationsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->integer('num_of_users');
+            $table->integer('rating')->nullable();
             $table->timestamps();
         });
     }
