@@ -16,7 +16,9 @@ class Reservation extends Model
         $param = Reservation::where('date', '>', $lastManthDate)
             ->where('user_id', $reservation_data->user_id)
             ->where('rating', null)
-            ->select('id', 'user_id', 'store_id', 'date', 'time', 'num_of_users', 'rating')
+            ->select('id', 'user_id', 'store_id', 'date', 'time', 'num_of_users', 'rating', 'comment')
+            ->orderBy('date')
+            ->orderBy('time')
             ->with('store:id,store_name')
             ->get();
         return $param;
@@ -47,7 +49,8 @@ class Reservation extends Model
                 'date' => $reservation_data->date,
                 'time' => $reservation_data->time,
                 'num_of_users' => $reservation_data->num_of_users,
-                'rating' => $reservation_data->rating
+                'rating' => $reservation_data->rating,
+                'comment' => $reservation_data->comment,
             ]);
         $param = Reservation::find($reservation_data->reservation_id);
         return $param;
@@ -64,6 +67,7 @@ class Reservation extends Model
         "date",
         "time",
         "num_of_users",
-        "rating"
+        "rating",
+        "comment",
     ];
 }
