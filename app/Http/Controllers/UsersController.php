@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -22,8 +23,15 @@ class UsersController extends Controller
     
     public function post(Request $request)
     {
-        $check = User::where('email', $request->email)->exists();
-        if(!$check){
+        $validator = Validator::make($request->all(), [
+            'user_name' => 'required|max:191',
+            'email' => 'required|email|unique:users,email|max:191',
+            'password' => 'required|regex:/^[a-zA-Z0-9]+$/|min:6|max:191',
+        ]);
+                
+        // $check = User::where('email', $request->email)->exists();
+        // if(!$check){
+        if(!$validator->fails()){
             $param = User::post_user($request);
             return response()->json([
                 'message' => 'User created successfully',
@@ -31,7 +39,8 @@ class UsersController extends Controller
             ], 201);
         }else{
             return response()->json([
-                'message' => 'Email is already registered',
+                // 'message' => 'Email is already registered',
+                'message' => $validator->errors(),
             ], 400);
         }
     }
