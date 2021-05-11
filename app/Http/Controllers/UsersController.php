@@ -3,22 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
     public function get(Request $request)
     {
-        if ($request->has('user_id')) {
-            $param = User::get_users($request);
+        // $param = Auth::guard('api')->user();
+        try {
+            $param = auth()->userOrFail();
             return response()->json([
                 'message' => 'User got successfully',
                 'data' => $param
             ], 200);
-        } else {
+        } catch(Exception $e) {
             return response()->json(['status' => 'not found'], 401);
         }
+
+        // if ($request->has('user_id')) {
+        //     $param = User::get_users($request);
+        //     return response()->json([
+        //         'message' => 'User got successfully',
+        //         'data' => $param
+        //     ], 200);
+        // } else {
+        //     return response()->json(['status' => 'not found'], 401);
+        // }
     }
     
     public function post(Request $request)
