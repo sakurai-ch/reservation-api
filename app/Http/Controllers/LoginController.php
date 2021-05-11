@@ -12,13 +12,6 @@ class LoginController extends Controller
     public function post(Request $request)
     {
         $items = User::where('email', $request->email)->first();
-        // $check = Hash::check($request->password, $items->password);
-
-        // if (!$token = Auth::guard('api')
-        // ->attempt(['email' => $request->email, 'password' => $request->password])) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
-
         $token = Auth::guard('api')->attempt(['email' => $request->email, 'password' => $request->password]);
 
         // if ($check) {

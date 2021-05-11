@@ -7,21 +7,20 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
     public function get(Request $request)
     {
-        // $param = Auth::guard('api')->user();
-        try {
-            $param = auth()->userOrFail();
+        $param = auth()->userOrFail();
+        if(!$param){
+            return response()->json(['status' => 'not found'], 401);
+        } else {
             return response()->json([
                 'message' => 'User got successfully',
                 'data' => $param
             ], 200);
-        } catch(Exception $e) {
-            return response()->json(['status' => 'not found'], 401);
         }
 
         // if ($request->has('user_id')) {
@@ -43,8 +42,6 @@ class UsersController extends Controller
             'password' => 'required|regex:/^[a-zA-Z0-9]+$/|min:6|max:191',
         ]);
                 
-        // $check = User::where('email', $request->email)->exists();
-        // if(!$check){
         if(!$validator->fails()){
             $param = User::post_user($request);
             return response()->json([
@@ -53,7 +50,6 @@ class UsersController extends Controller
             ], 201);
         }else{
             return response()->json([
-                // 'message' => 'Email is already registered',
                 'message' => $validator->errors(),
             ], 400);
         }

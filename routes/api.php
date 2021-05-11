@@ -14,12 +14,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/v1/store', [StoresController::class, 'index']);
 Route::get('/v1/store/{id}', [StoresController::class, 'show']);
 Route::post('/v1/user', [UsersController::class, 'post']);
-// Route::get('/v1/user', [UsersController::class, 'get']);
-// Route::post('/v1/logout', [LogoutController::class, 'post']);
-Route::group(['middleware' => 'auth:api'],function () {
+// Route::group(['middleware' => 'auth:api'],function () {
   Route::get('/v1/user', [UsersController::class, 'get']);
   Route::post('/v1/logout', [LogoutController::class, 'post']);
-});
+// });
 Route::post('/v1/login', [LoginController::class, 'post']);
 Route::post('/v1/favorite', [FavoritesController::class, 'post']);
 Route::delete('/v1/favorite', [FavoritesController::class, 'delete']);
