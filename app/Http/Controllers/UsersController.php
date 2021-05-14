@@ -13,7 +13,7 @@ class UsersController extends Controller
 {
     public function get(Request $request)
     {
-        $param = auth()->userOrFail();
+        $param = auth('api')->userOrFail();
         if($param){
             return response()->json(['status' => 'not found'], 401);
         } else {
