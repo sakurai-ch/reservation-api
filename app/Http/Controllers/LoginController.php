@@ -12,9 +12,9 @@ class LoginController extends Controller
     public function post(Request $request)
     {
         $items = User::where('email', $request->email)->first();
-        $token = Auth::guard('api')->attempt(['email' => $request->email, 'password' => $request->password]);
+        $token = Auth::guard('api')
+            ->attempt(['email' => $request->email, 'password' => $request->password]);
 
-        // if ($check) {
         if ($token) {
             return response()->json([
                 'id' => $items->id,
