@@ -12,8 +12,9 @@ class LoginController extends Controller
     public function post(Request $request)
     {
         $items = User::where('email', $request->email)->first();
-        $token = Auth::guard('api')
-            ->attempt(['email' => $request->email, 'password' => $request->password]);
+        // $token = Auth::guard('api')
+            // ->attempt(['email' => $request->email, 'password' => $request->password]);
+        $token = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
         if ($token) {
             return response()->json([
@@ -21,7 +22,8 @@ class LoginController extends Controller
                 'auth' => true,
                 'access_token' => $token,
                 'token_type' => 'bearer',
-                'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+                // 'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+                'expires_in' => Auth::factory()->getTTL() * 60
             ], 200);
         } else {
             return response()->json(['auth' => false], 401);

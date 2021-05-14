@@ -7,13 +7,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
     public function get(Request $request)
     {
-        $param = auth('api')->userOrFail();
+        // $param = auth('api')->userOrFail();
+        $param = Auth::userOrFail();
         if($param){
             return response()->json(['status' => 'not found'], 401);
         } else {
