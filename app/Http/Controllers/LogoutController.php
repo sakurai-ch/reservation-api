@@ -10,7 +10,8 @@ class LogoutController extends Controller
 {
     public function post(Request $request)
     {
-        Auth::guard('api')->logout();
+        Auth::auth('api')->logout();
+        // Auth::logout();
         return response()->json(['auth' => false], 200);
     }
 }

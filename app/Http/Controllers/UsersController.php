@@ -14,8 +14,9 @@ class UsersController extends Controller
     public function get(Request $request)
     {
         // $param = auth('api')->userOrFail();
-        $param = Auth::userOrFail();
-        if($param){
+        $param = Auth::auth('api')->user();
+        // $param = Auth::user();
+        if ($param == null) {
             return response()->json(['status' => 'not found'], 401);
         } else {
             return response()->json([
@@ -34,7 +35,7 @@ class UsersController extends Controller
         //     return response()->json(['status' => 'not found'], 401);
         // }
     }
-    
+
     public function post(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -42,18 +43,17 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users,email|max:191',
             'password' => 'required|regex:/^[a-zA-Z0-9]+$/|min:6|max:191',
         ]);
-                
-        if(!$validator->fails()){
+
+        if (!$validator->fails()) {
             $param = User::post_user($request);
             return response()->json([
                 'message' => 'User created successfully',
                 'data' => $param
             ], 201);
-        }else{
+        } else {
             return response()->json([
                 'message' => $validator->errors(),
             ], 400);
         }
     }
-
 }
