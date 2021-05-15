@@ -8,6 +8,7 @@ use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\AreasController;
 use App\Http\Controllers\GenresController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
