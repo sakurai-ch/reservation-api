@@ -20,7 +20,8 @@ Route::post('/v1/user', [UsersController::class, 'post']);
 Route::group(['middleware' => 'api'], function () {
   Route::post('/v1/login', [AuthController::class, 'login']);
 });
-Route::group(['middleware' => 'auth:api'], function () {
+// Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'api'], function () {
   Route::get('/v1/user', [AuthController::class, 'me']);
   Route::post('/v1/logout', [AuthController::class, 'logout']);
 });
