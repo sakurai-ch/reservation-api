@@ -16,15 +16,25 @@ Route::get('/v1/store/{id}', [StoresController::class, 'show']);
 Route::post('/v1/user', [UsersController::class, 'post']);
 
 
-Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
-  Route::get('/v1/user', [AuthController::class, 'me']);
-  Route::post('/v1/login', [AuthController::class, 'login']);
-  Route::post('/v1/logout', [AuthController::class, 'logout']);
+Route::group(['prefix' => 'auth'], function () {
+  Route::group(['middleware' => 'api'], function () {
+    Route::post('/v1/login', [AuthController::class, 'login']);
+  });
+  Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/v1/user', [AuthController::class, 'me']);
+    Route::post('/v1/logout', [AuthController::class, 'logout']);
+  });
 });
+// Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
+//   Route::get('/v1/user', [AuthController::class, 'me']);
+//   Route::post('/v1/login', [AuthController::class, 'login']);
+//   Route::post('/v1/logout', [AuthController::class, 'logout']);
+// });
+
 // Route::get('/v1/user', [UsersController::class, 'get']);
 // Route::post('/v1/logout', [LogoutController::class, 'post']);
-
 // Route::post('/v1/login', [LoginController::class, 'post']);
+
 Route::post('/v1/favorite', [FavoritesController::class, 'post']);
 Route::delete('/v1/favorite', [FavoritesController::class, 'delete']);
 Route::post('/v1/reservation', [ReservationsController::class, 'post']);
