@@ -24,7 +24,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 // Route::get('/v1/user', [UsersController::class, 'get']);
 // Route::post('/v1/logout', [LogoutController::class, 'post']);
 
-Route::post('/v1/login', [LoginController::class, 'post']);
+// Route::post('/v1/login', [LoginController::class, 'post']);
 Route::post('/v1/favorite', [FavoritesController::class, 'post']);
 Route::delete('/v1/favorite', [FavoritesController::class, 'delete']);
 Route::post('/v1/reservation', [ReservationsController::class, 'post']);
