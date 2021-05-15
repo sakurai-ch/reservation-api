@@ -26,7 +26,7 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (!$token = auth($this->guard)->attempt($credentials)) {
+        if (!$token = auth('api')->attempt($credentials)) {
         // if (!$token = Auth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -41,7 +41,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth($this->guard)->user());
+        return response()->json(auth('api')->user());
         // return response()->json(Auth::user());
     }
 
@@ -52,7 +52,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth($this->guard)->logout();
+        auth('api')->logout();
         // Auth::auth()->logout();
 
         return response()->json([
@@ -68,7 +68,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth($this->guard)->refresh());
+        return $this->respondWithToken(auth('api')->refresh());
         // return $this->respondWithToken(Auth::auth()->refresh());
     }
 
