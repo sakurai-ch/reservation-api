@@ -81,7 +81,7 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        $item = request(['user_id']); //
+        $item = auth('api')->user(); //
 
         return response()->json([
             'access_token' => $token,
