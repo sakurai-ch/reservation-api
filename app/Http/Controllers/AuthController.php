@@ -44,6 +44,8 @@ class AuthController extends Controller
      */
     public function me()
     {
+        request()->bearerToken();
+
         // return response()->json(auth()->user());
         return response()->json(Auth::user());
     }
