@@ -44,10 +44,11 @@ class AuthController extends Controller
      */
     public function me()
     {
-        request()->bearerToken();
+        // request()->bearerToken();
 
         // return response()->json(auth()->user());
-        return response()->json(Auth::user());
+        // return response()->json(Auth::user());
+        return response()->json(['sample'=>'0']);
     }
 
     // public function me(Request $request)
