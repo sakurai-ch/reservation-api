@@ -19,12 +19,13 @@ Route::post('/v1/user', [UsersController::class, 'post']);
 
 Route::post('/v1/login', [AuthController::class, 'login']);
 
-Route::group(['middleware' => 'auth:api'], function () {
-  // Route::get('/v1/user', [AuthController::class, 'me']);
+// Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/v1/user', [AuthController::class, 'me']);
   Route::post('/v1/logout', [AuthController::class, 'logout']);
 });
 
-Route::get('/v1/user', [AuthController::class, 'get']);
+// Route::get('/v1/user', [AuthController::class, 'get']);
 
 // Route::get('/v1/user', [UsersController::class, 'get']);
 // Route::post('/v1/logout', [LogoutController::class, 'post']);

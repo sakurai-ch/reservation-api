@@ -50,18 +50,18 @@ class AuthController extends Controller
         return response()->json(Auth::user());
     }
 
-    public function get(Request $request)
-    {
-        if ($request->has('user_id')) {
-            $param = User::get_users($request);
-            return response()->json([
-                'message' => 'User got successfully',
-                'data' => $param
-            ], 200);
-        } else {
-            return response()->json(['status' => 'not found'], 401);
-        }
-    }
+    // public function get(Request $request)
+    // {
+    //     if ($request->has('user_id')) {
+    //         $param = User::get_users($request);
+    //         return response()->json([
+    //             'message' => 'User got successfully',
+    //             'data' => $param
+    //         ], 200);
+    //     } else {
+    //         return response()->json(['status' => 'not found'], 401);
+    //     }
+    // }
 
     /**
      * Log the user out (Invalidate the token).
