@@ -41,7 +41,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth('api')->user());
+        return response()->json(auth()->user());
         // return response()->json(Auth::user());
     }
 
@@ -52,7 +52,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth('api')->logout();
+        auth()->logout();
         // Auth::auth()->logout();
 
         return response()->json([
@@ -81,7 +81,7 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        $item = auth('api')->user(); //
+        $item = auth()->user(); //
 
         return response()->json([
             'access_token' => $token,
