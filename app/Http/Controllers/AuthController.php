@@ -44,7 +44,8 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        // return response()->json(auth()->user());
+        return response()->json(Auth::user());
     }
 
     // public function me(Request $request)
@@ -96,16 +97,14 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        // $item = auth()->user(); //
-        $item = Auth::user(); //
+        $item = Auth::user();
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            // 'expires_in' => auth('api')->factory()->getTTL() * 60,
             'expires_in' => Auth::factory()->getTTL() * 60,
-            'id' => $item, //
-            'auth' => true, //
+            'user_data' => $item,
+            'auth' => true,
         ]);
     }
 }
