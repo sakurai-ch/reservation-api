@@ -22,7 +22,7 @@ Route::post('/v1/user', [UsersController::class, 'post']);
 // });
 
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth:api'], function ($router) {
   Route::get('/v1/user', 'AuthController@me');
   Route::post('/v1/logout', 'AuthController@logout');
 });
