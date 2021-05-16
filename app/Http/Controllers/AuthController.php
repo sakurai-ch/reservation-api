@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
+use App\Models\User; //
+use Illuminate\Http\Request;  //
+
 class AuthController extends Controller
 {
     /**
@@ -41,19 +44,21 @@ class AuthController extends Controller
      */
     public function me()
     {
-        // return response()->json(auth()->user());
-        return response()->json(Auth::user());
-
-        // if ($request->has('user_id')) {
-        //     $param = User::get_users($request);
-        //     return response()->json([
-        //         'message' => 'User got successfully',
-        //         'data' => $param
-        //     ], 200);
-        // } else {
-        //     return response()->json(['status' => 'not found'], 401);
-        // }
+        return response()->json(auth()->user());
     }
+
+    // public function me(Request $request)
+    // {
+    //     if ($request->has('user_id')) {
+    //         $param = User::get_users($request);
+    //         return response()->json([
+    //             'message' => 'User got successfully',
+    //             'data' => $param
+    //         ], 200);
+    //     } else {
+    //         return response()->json(['status' => 'not found'], 401);
+    //     }
+    // }
 
     /**
      * Log the user out (Invalidate the token).
