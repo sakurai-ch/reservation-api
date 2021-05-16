@@ -22,9 +22,9 @@ Route::post('/v1/user', [UsersController::class, 'post']);
 // });
 
 
-Route::group(['middleware' => 'auth:api'], function ($router) {
-  Route::get('/v1/user', 'AuthController@me');
-  Route::post('/v1/logout', 'AuthController@logout');
+Route::group(['middleware' => 'auth:api'], function () {
+  Route::get('/v1/user', 'App\Http\Controllers\AuthController@me');
+  Route::post('/v1/logout', 'App\Http\Controllers\AuthController@logout');
 });
 
 // Route::group(['middleware' => 'auth:api'], function () {
