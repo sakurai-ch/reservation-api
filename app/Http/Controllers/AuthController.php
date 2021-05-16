@@ -42,26 +42,26 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    // public function me()
-    // {
+    public function me()
+    {
         // request()->bearerToken();
 
         // return response()->json(auth()->user());
-        // return response()->json(Auth::user());
-    // }
-
-    public function me(Request $request)
-    {
-        if ($request->has('user_id')) {
-            $param = User::get_users($request);
-            return response()->json([
-                'message' => 'User got successfully',
-                'data' => $param
-            ], 200);
-        } else {
-            return response()->json(['status' => 'not found'], 401);
-        }
+        return response()->json(Auth::user());
     }
+
+    // public function me(Request $request)
+    // {
+    //     if ($request->has('user_id')) {
+    //         $param = User::get_users($request);
+    //         return response()->json([
+    //             'message' => 'User got successfully',
+    //             'data' => $param
+    //         ], 200);
+    //     } else {
+    //         return response()->json(['status' => 'not found'], 401);
+    //     }
+    // }
 
     /**
      * Log the user out (Invalidate the token).
@@ -70,8 +70,8 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
-        // Auth::auth()->logout();
+        // auth()->logout();
+        Auth::logout();
 
         return response()->json([
             'message' => 'Successfully logged out',
