@@ -41,8 +41,18 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
-        // return response()->json(Auth::user());
+        // return response()->json(auth()->user());
+        return response()->json(Auth::user());
+
+        // if ($request->has('user_id')) {
+        //     $param = User::get_users($request);
+        //     return response()->json([
+        //         'message' => 'User got successfully',
+        //         'data' => $param
+        //     ], 200);
+        // } else {
+        //     return response()->json(['status' => 'not found'], 401);
+        // }
     }
 
     /**
