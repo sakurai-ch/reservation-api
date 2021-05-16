@@ -17,20 +17,14 @@ Route::get('/v1/store/{id}', [StoresController::class, 'show']);
 Route::post('/v1/user', [UsersController::class, 'post']);
 
 
-// Route::group(['middleware' => 'api'], function () {
-  Route::post('/v1/login', [AuthController::class, 'login']);
-// });
-
+Route::post('/v1/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => 'auth:api'], function () {
-  Route::get('/v1/user', 'App\Http\Controllers\AuthController@me');
-  Route::post('/v1/logout', 'App\Http\Controllers\AuthController@logout');
+  // Route::get('/v1/user', [AuthController::class, 'me']);
+  Route::post('/v1/logout', [AuthController::class, 'logout']);
 });
 
-// Route::group(['middleware' => 'auth:api'], function () {
-//   Route::get('/v1/user', [AuthController::class, 'me']);
-//   Route::post('/v1/logout', [AuthController::class, 'logout']);
-// });
+Route::get('/v1/user', [AuthController::class, 'get']);
 
 // Route::get('/v1/user', [UsersController::class, 'get']);
 // Route::post('/v1/logout', [LogoutController::class, 'post']);
