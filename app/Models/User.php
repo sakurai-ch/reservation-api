@@ -24,15 +24,15 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public static function get_users($user_data){
-        $items = User::find($user_data->user_id);
-        $param = [
-            'id' => $items->id,
-            'user_name' => $items->user_name,
-            'email' => $items->email
-        ];
-        return $param;
-    }
+    // public static function get_users($user_data){
+    //     $items = User::find($user_data->user_id);
+    //     $param = [
+    //         'id' => $items->id,
+    //         'user_name' => $items->user_name,
+    //         'email' => $items->email
+    //     ];
+    //     return $param;
+    // }
 
     public static function post_user($user_data){
         $hashed_password = Hash::make($user_data->password);
