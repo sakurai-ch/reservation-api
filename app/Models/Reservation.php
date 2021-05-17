@@ -13,8 +13,10 @@ class Reservation extends Model
     public static function get_reservation($reservation_data)
     {
         $lastManthDate = Carbon::now()->subMonth(1);
+        $user_id = auth()->user()->id;
         $param = Reservation::where('date', '>', $lastManthDate)
-            ->where('user_id', $reservation_data->user_id)
+            // ->where('user_id', $reservation_data->user_id)
+            ->where('user_id', $user_id)
             ->where('rating', null)
             ->select('id', 'user_id', 'store_id', 'date', 'time', 'num_of_users', 'rating', 'comment')
             ->orderBy('date')
@@ -26,8 +28,10 @@ class Reservation extends Model
 
     public static function post_reservation($reservation_data)
     {
+        $user_id = auth()->user()->id;
         $param = Reservation::create([
-            "user_id" => $reservation_data->user_id,
+            // "user_id" => $reservation_data->user_id,
+            "user_id" => $user_id,
             "store_id" => $reservation_data->store_id,
             "date" => $reservation_data->date,
             "time" => $reservation_data->time,
