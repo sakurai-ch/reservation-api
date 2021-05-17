@@ -32,9 +32,9 @@ class Store extends Model
 
     public static function update_store($store_data, $store_id)
     {
-        Validator::make($store_data, [
-            'file' => ['required', 'file', 'image', 'mimes:jpeg,png']
-        ]);
+        // Validator::make($store_data, [
+        //     'file' => ['required', 'file', 'image', 'mimes:jpeg,png']
+        // ]);
         $file = $store_data->file('file');
         $upload_info = Storage::disk('s3')->putFile('/', $file);
         $path = Storage::disk('s3')->url($upload_info);
