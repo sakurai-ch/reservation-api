@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class Store extends Model
 {
@@ -25,6 +27,23 @@ class Store extends Model
     {
         $param = Store::with('area:id,area_name', 'genre:id,genre_name')->find($store_id);
         $param['user_id'] = $param->users()->where('user_id', $user_data->user_id)->value('user_id');
+        return $param;
+    }
+
+    public static function update_store($store_data, $store_id)
+    {
+        Validator::validate($store_data, [
+            'file' => ['required', 'file', 'image', 'mimes:jpeg,png']
+        ]);
+        $file = $store_data->file('file');
+        $upload_info = Storage::disk('s3')->putFile('/', $file);
+        $path = Storage::disk('s3')->url($upload_info);
+
+        Store::where('id', $store_id)
+            ->update([
+                'image_url' => $path,
+            ]);
+        $param = Store::find($store_id);
         return $param;
     }
 

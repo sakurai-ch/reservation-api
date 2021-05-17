@@ -25,4 +25,13 @@ class StoresController extends Controller
         ], 200);
     }
 
+    public function update(Request $request, $id)
+    {
+        $param = Store::update_store($request, $id);
+        return response()->json([
+            'message' => 'OK',
+            'data' => $param
+        ], 200);
+    }
+
 }

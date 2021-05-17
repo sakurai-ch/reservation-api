@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/v1/store', [StoresController::class, 'index']);
 Route::get('/v1/store/{id}', [StoresController::class, 'show']);
+Route::patch('/v1/store/{id}', [StoresController::class, 'update']);
 Route::get('/v1/area', [AreasController::class, 'get']);
 Route::get('/v1/genre', [GenresController::class, 'get']);
 
