@@ -35,8 +35,9 @@ class Store extends Model
         // Validator::make($store_data, [
         //     'file' => ['required', 'file', 'image', 'mimes:jpeg,png']
         // ]);
-        $file = $store_data->file('file');
-        $upload_info = Storage::disk('s3')->putFile('/', $file);
+        // $file = $store_data->file('file');
+        $file = $store_data->file;
+        $upload_info = Storage::disk('s3')->putFile('/',$file, 'public');
         $path = Storage::disk('s3')->url($upload_info);
 
         Store::where('id', $store_id)
