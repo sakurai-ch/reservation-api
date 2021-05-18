@@ -9,7 +9,11 @@ class ReservationsController extends Controller
 {
     public function get(Request $request)
     {
-        $param = Reservation::get_reservation($request);
+        ($request->store_id == null){
+            $param = Reservation::get_user_reservation($request);
+        }else{
+            $param = Reservation::get_store_reservation($request);
+        }
         return response()->json([
             'message' => 'Reservation got successfully',
             'data' => $param

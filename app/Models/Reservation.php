@@ -10,7 +10,7 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    public static function get_reservation($reservation_data)
+    public static function get_user_reservation($reservation_data)
     {
         $lastManthDate = Carbon::now()->subMonth(1);
         $user_id = auth()->user()->id;
@@ -22,6 +22,17 @@ class Reservation extends Model
             ->orderBy('date')
             ->orderBy('time')
             ->with('store:id,store_name')
+            ->get();
+        return $param;
+    }
+
+    public static function get_store_reservation($reservation_data)
+    {
+
+        $param = Reservation::where('id', '=', $reservation_data->store_id)
+            ->where('date', '=', $reservation_data->date)
+            ->orderBy('time')
+            ->with('user:id,user_name,email')
             ->get();
         return $param;
     }
@@ -63,6 +74,11 @@ class Reservation extends Model
     public function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     protected $fillable = [
