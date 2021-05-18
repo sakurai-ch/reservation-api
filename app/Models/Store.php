@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
 class Store extends Model
@@ -39,7 +39,7 @@ class Store extends Model
                 'genre_id' => $store_data->genre_id,
                 'description' => $store_data->description,
             ]);
-        $param = Store::find($store_data->$store_id);
+        $param = Store::find($store_id);
         return $param;
     }
 
