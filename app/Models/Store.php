@@ -32,12 +32,15 @@ class Store extends Model
 
     public static function update_store($store_data, $store_id)
     {
-        // Validator::make($store_data, [
-        //     'file' => ['required', 'file', 'image', 'mimes:jpeg,png']
-        // ]);
-        // $file = $store_data->file('file');
+        Validator::make($store_data, [
+            'file' => ['required', 'file', 'image', 'mimes:jpeg,png']
+        ]);
+
         $file = $store_data->file;
-        $upload_info = Storage::disk('s3')->putFile('/',$file, 'public');
+        $extension = $file->getClientOriginalExtension();
+        $file_name = 'store' + str_pad($store_id, 3, 0, STR_PAD_LEFT) + '.' + $extension;
+
+        $upload_info = Storage::disk('s3')->putFileAS('/', $file, $file_name, 'public');
         $path = Storage::disk('s3')->url($upload_info);
 
         Store::where('id', $store_id)
