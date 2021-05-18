@@ -37,10 +37,7 @@ class Store extends Model
         ]);
 
         $file = $store_data->file;
-        $extension = $file->getClientOriginalExtension();
-        $file_name = 'store' + str_pad((int)$store_id, 3, 0, STR_PAD_LEFT) + '.' + $extension;
-
-        $upload_info = Storage::disk('s3')->putFileAS('/', $file, $file_name, 'public');
+        $upload_info = Storage::disk('s3')->putFile('/', $file, 'public');
         $path = Storage::disk('s3')->url($upload_info);
 
         Store::where('id', $store_id)
