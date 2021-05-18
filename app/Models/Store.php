@@ -32,8 +32,8 @@ class Store extends Model
 
     public static function update_store($store_data, $store_id)
     {
-        Validator::make($store_data, [
-            'file' => ['required', 'file', 'image', 'mimes:jpeg,png']
+        $store_data->validate([
+            'file' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
         ]);
 
         $file = $store_data->file;
