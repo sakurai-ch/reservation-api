@@ -30,7 +30,20 @@ class Store extends Model
         return $param;
     }
 
-    public static function update_store($store_data, $store_id)
+    public static function update_storedata($store_data, $store_id)
+    {
+        Store::where('id', $store_id)
+            ->update([
+                'store_name' => $store_data->store_name,
+                'area_id' => $store_data->area_id,
+                'genre_id' => $store_data->genre_id,
+                'description' => $store_data->description,
+            ]);
+        $param = Store::find($store_data->$store_id);
+        return $param;
+    }
+
+    public static function upload_storefile($store_data, $store_id)
     {
         $store_data->validate([
             'file' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
@@ -44,8 +57,8 @@ class Store extends Model
             ->update([
                 'image_url' => $path,
             ]);
-        $param = Store::find($store_id);
-        return $param;
+        // $param = Store::find($store_id);
+        // return $param;
     }
 
     public function area()

@@ -27,7 +27,10 @@ class StoresController extends Controller
 
     public function update(Request $request, $id)
     {
-        $param = Store::update_store($request, $id);
+        if($request->file != null){
+            $param = Store::upload_storefile($request, $id);
+        }
+        $param = Store::update_storedata($request, $id);
         return response()->json([
             'message' => 'OK',
             'data' => $param
