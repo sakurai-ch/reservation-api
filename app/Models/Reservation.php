@@ -28,8 +28,7 @@ class Reservation extends Model
 
     public static function get_store_reservation($reservation_data)
     {
-
-        $param = Reservation::where('id', '=', $reservation_data->store_id)
+        $param = Reservation::where('store_id', '=', $reservation_data->store_id)
             ->where('date', '=', $reservation_data->date)
             ->orderBy('time')
             ->with('user:id,user_name,email')
