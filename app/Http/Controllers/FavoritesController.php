@@ -10,10 +10,9 @@ class FavoritesController extends Controller
 {
     public function post(Request $request)
     {
-        $param = Favorite::post_favorite($request);
+        Favorite::post_favorite($request);
         return response()->json([
             'message' => 'Favorite created successfully',
-            // 'data' => $param
         ], 201);
     }
 

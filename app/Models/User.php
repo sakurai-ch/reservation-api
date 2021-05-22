@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-// class User extends Authenticatable
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
@@ -24,22 +23,18 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    // public static function get_users($user_data){
-    //     $items = User::find($user_data->user_id);
-    //     $param = [
-    //         'id' => $items->id,
-    //         'user_name' => $items->user_name,
-    //         'email' => $items->email
-    //     ];
-    //     return $param;
-    // }
-
     public static function post_user($user_data){
         $hashed_password = Hash::make($user_data->password);
+        $manager = false;
+        if($user_data->manager){ $manager = true; }
+        $administrator = false;
+        if($user_data->administrator){ $administrator = true; }
         $param = User::create([
             'user_name' => $user_data->user_name,
             'email' => $user_data->email,
             'password' => $hashed_password,
+            'manager' => $manager,
+            'administrator' => $administrator,
         ]);
         return $param;
     }
