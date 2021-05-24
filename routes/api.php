@@ -30,5 +30,7 @@ Route::group(['middleware' => 'auth:api'], function () {
   
   Route::patch('/v1/store/{id}', [StoresController::class, 'update']);
   Route::get('/v1/manager', [ManagerController::class, 'get']);
+
+  Route::get('/v1/user', [UsersController::class, 'get']);
 });
 

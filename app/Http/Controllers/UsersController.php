@@ -3,11 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
+    public function get(Request $request)
+    {
+        $check = auth()->user()->administrator;
+        if (!$check) {
+            return response()->json([
+                'message' => 'unauthorized',
+            ], 401);
+        }
+
+        $param = Manager::get_managers($request);
+        return response()->json([
+            'message' => 'Manager got successfully',
+            'data' => $param
+        ], 200);
+    }
+
     public function post(Request $request)
     {
         $validator = Validator::make($request->all(), [
