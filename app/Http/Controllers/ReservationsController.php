@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\Manager;
 
 class ReservationsController extends Controller
 {
@@ -13,6 +14,15 @@ class ReservationsController extends Controller
         if($request->store_id == null){
             $param = Reservation::get_user_reservation($request);
         }else{
+            $check = manager::where('user_id', auth()->user()->id)
+                ->where('store_id', $request->store_id)
+                ->exists();
+            if (!$check) {
+                return response()->json([
+                    'message' => 'unauthorized',
+                ], 401);
+            }
+
             $param = Reservation::get_store_reservation($request);
         }
         return response()->json([
