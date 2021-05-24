@@ -44,7 +44,7 @@ class User extends Authenticatable implements JWTSubject
         ->leftJoinSub($store_managers, 'store_managers', function ($join) {
             $join->on('users.id', '=', 'store_managers.user_id');
         })
-        ->with('store:id,store_name')
+        // ->with('store:id,store_name')
         ->get();
         return $param;
     }
