@@ -57,8 +57,6 @@ class Store extends Model
             ->update([
                 'image_url' => $path,
             ]);
-        // $param = Store::find($store_id);
-        // return $param;
     }
 
     public function area()

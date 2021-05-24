@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api'], function () {
   Route::patch('/v1/reservation', [ReservationsController::class, 'patch']);
   Route::post('/v1/favorite', [FavoritesController::class, 'post']);
   Route::delete('/v1/favorite', [FavoritesController::class, 'delete']);
+  
   Route::patch('/v1/store/{id}', [StoresController::class, 'update']);
   Route::get('/v1/manager', [ManagerController::class, 'get']);
 });

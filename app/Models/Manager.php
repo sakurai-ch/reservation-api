@@ -9,7 +9,7 @@ class Manager extends Model
 {
     use HasFactory;
 
-    public static function get_user_Manager()
+    public static function get_stores_name()
     {
         $user_id = auth()->user()->id;
         $param = Manager::where('user_id', $user_id)
@@ -20,26 +20,28 @@ class Manager extends Model
         return $param;
     }
 
-    public static function get_store_Manager($manager_data)
-    {
-        $param = Manager::where('store_id', $manager_data->store_id)
-            ->orderBy('user_id')
-            ->with('user:id,user_name,email')
-            ->get();
-        return $param;
-    }
+    // public static function get_store_Manager($manager_data)
+    // {
+    //     $user_id = auth()->user()->id;
+    //     $param = Manager::where('user_id', $user_id)
+    //         ->where('store_id', $manager_data->store_id)
+    //         ->orderBy('user_id')
+    //         ->with('user:id,user_name,email')
+    //         ->get();
+    //     return $param;
+    // }
 
-    public static function post_manager($manager_data)
-    {
-        $user_id = auth()->user()->id;
-        User::find($user_id)->stores()->attach($manager_data->store_id);
-    }
+    // public static function post_manager($manager_data)
+    // {
+    //     $user_id = auth()->user()->id;
+    //     User::find($user_id)->stores()->attach($manager_data->store_id);
+    // }
 
-    public static function delete_manager($manager_data)
-    {
-        $user_id = auth()->user()->id;
-        User::find($user_id)->stores()->detach($manager_data->store_id);
-    }
+    // public static function delete_manager($manager_data)
+    // {
+    //     $user_id = auth()->user()->id;
+    //     User::find($user_id)->stores()->detach($manager_data->store_id);
+    // }
 
     public function store()
     {

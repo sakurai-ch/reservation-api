@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\Manager;
 use Illuminate\Http\Request;
 
 class StoresController extends Controller
@@ -27,6 +28,16 @@ class StoresController extends Controller
 
     public function update(Request $request, $id)
     {
+        $check = manager::where('user_id', auth()->user()->id)
+            ->where('store_id', $id)
+            ->exists();
+        if(!$check){
+            return response()->json([
+                'message' => 'unauthorized',
+            ], 401);
+        }
+
+        $param = "";
         if($request->file != null){
             $param = Store::upload_storefile($request, $id);
         }else{
