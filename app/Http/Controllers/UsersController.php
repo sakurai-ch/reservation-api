@@ -18,7 +18,7 @@ class UsersController extends Controller
             ], 401);
         }
 
-        $param = Manager::get_managers($request);
+        $param = User::get_managers($request);
         return response()->json([
             'message' => 'Manager got successfully',
             'data' => $param

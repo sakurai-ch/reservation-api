@@ -20,14 +20,6 @@ class Manager extends Model
         return $param;
     }
 
-    public static function get_managers()
-    {
-        $param = Manager::with('user:id,user_name,mail', 'store:id,store_name')
-        ->get();
-        return $param;
-    }
-
-
     // public static function get_store_Manager($manager_data)
     // {
     //     $user_id = auth()->user()->id;
