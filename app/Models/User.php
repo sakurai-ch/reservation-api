@@ -25,17 +25,14 @@ class User extends Authenticatable implements JWTSubject
 
     public static function post_user($user_data){
         $hashed_password = Hash::make($user_data->password);
-        // $manager = 0;
-        // if($user_data->manager == 1){ $manager = 1; }
-        // $administrator = 0;
-        // if($user_data->administrator == 1){ $administrator = 1; }
+        $manager = false;
+        if($user_data->manager && auth()->user()->administrator){ $manager = true; }
         $param = User::create([
             'user_name' => $user_data->user_name,
             'email' => $user_data->email,
             'password' => $hashed_password,
-            // 'manager' => $user_data->manager,
-            'manager' => true,
-            'administrator' => $user_data->administrator,
+            'manager' => $manager,
+            'administrator' => false,
         ]);
         return $param;
     }
@@ -49,6 +46,8 @@ class User extends Authenticatable implements JWTSubject
         'user_name',
         'email',
         'password',
+        'manager',
+        'administrator',
     ];
 
     protected $hidden = [
