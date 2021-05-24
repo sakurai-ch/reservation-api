@@ -33,7 +33,8 @@ class User extends Authenticatable implements JWTSubject
             'user_name' => $user_data->user_name,
             'email' => $user_data->email,
             'password' => $hashed_password,
-            'manager' => $user_data->manager,
+            // 'manager' => $user_data->manager,
+            'manager' => 1,
             'administrator' => $user_data->administrator,
         ]);
         return $param;
