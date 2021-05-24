@@ -39,11 +39,14 @@ class Manager extends Model
     //     return $param;
     // }
 
-    // public static function post_manager($manager_data)
-    // {
-    //     $user_id = auth()->user()->id;
-    //     User::find($user_id)->stores()->attach($manager_data->store_id);
-    // }
+    public static function post_manager($manager_data)
+    {
+        $param = Manager::create([
+            'user_id' => $manager_data->user_id,
+            'store_id' => $manager_data->store_id,
+        ]);
+        return $param;
+    }
 
     // public static function delete_manager($manager_data)
     // {

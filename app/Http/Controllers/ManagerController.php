@@ -21,13 +21,21 @@ class ManagerController extends Controller
         ], 200);
     }
 
-    // public function post(Request $request)
-    // {
-    //     Manager::post_manager($request);
-    //     return response()->json([
-    //         'message' => 'Manager created successfully',
-    //     ], 201);
-    // }
+    public function post(Request $request)
+    {
+        $check = auth()->user()->administrator;
+        if (!$check) {
+            return response()->json([
+                'message' => 'unauthorized',
+            ], 401);
+        }
+
+        $param = Manager::post_manager($request);
+        return response()->json([
+            'message' => 'Manager created successfully',
+            'data' => $param,
+        ], 201);
+    }
 
     // public function delete(Request $request)
     // {
