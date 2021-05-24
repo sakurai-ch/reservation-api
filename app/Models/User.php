@@ -39,7 +39,7 @@ class User extends Authenticatable implements JWTSubject
 
     public static function get_managers()
     {
-        $store_managers = Manager::get();
+        $store_managers = Manager::select('*');
         $param = user::where('manager', true)
         ->leftJoinSub($store_managers, 'store_managers', function ($join) {
             $join->on('user.id', '=', 'store_managers.user_id');
