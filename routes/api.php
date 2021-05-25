@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth:api'], function () {
   Route::get('/v1/manager', [ManagerController::class, 'get']);
   
   Route::get('/v1/user', [UsersController::class, 'get']);
-  Route::post('/v1/manager', [ManagerController::class, 'post']);
+  Route::post('/v1/manager', [ManagerController::class, 'create']);
+  Route::delete('/v1/manager', [ManagerController::class, 'delete']);
+  Route::post('/v1/store', [StoresController::class, 'index']);
 });
 

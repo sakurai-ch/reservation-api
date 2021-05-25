@@ -59,6 +59,14 @@ class Store extends Model
             ]);
     }
 
+    public static function create_store($store_data)
+    {
+        $param = Store::cretae([
+                'store_name' => $store_data->store_name,,
+            ]);
+        return $param;
+    }
+
     public function area()
     {
         return $this->belongsTo(Area::class);

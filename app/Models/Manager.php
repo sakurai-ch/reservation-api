@@ -20,17 +20,6 @@ class Manager extends Model
         return $param;
     }
 
-    // public static function get_store_Manager($manager_data)
-    // {
-    //     $user_id = auth()->user()->id;
-    //     $param = Manager::where('user_id', $user_id)
-    //         ->where('store_id', $manager_data->store_id)
-    //         ->orderBy('user_id')
-    //         ->with('user:id,user_name,email')
-    //         ->get();
-    //     return $param;
-    // }
-
     public static function post_manager($manager_data)
     {
         $param = Manager::create([
@@ -40,11 +29,12 @@ class Manager extends Model
         return $param;
     }
 
-    // public static function delete_manager($manager_data)
-    // {
-    //     $user_id = auth()->user()->id;
-    //     User::find($user_id)->stores()->detach($manager_data->store_id);
-    // }
+    public static function delete_manager($manager_data)
+    {
+        Manager::where('user_id', $manager_data->user_id)
+            ->where('store_id', $manager_data->store_id)
+            ->delete();
+    }
 
     public function store()
     {

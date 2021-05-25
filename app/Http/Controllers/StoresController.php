@@ -49,4 +49,20 @@ class StoresController extends Controller
         ], 200);
     }
 
+    public function create(Request $request)
+    {
+        $check = auth()->user()->administrator;
+        if (!$check) {
+            return response()->json([
+                'message' => 'unauthorized',
+            ], 401);
+        }
+
+        $param = Store::create_store($request);
+        return response()->json([
+            'message' => 'Store created successfully',
+            'data' => $param,
+        ], 201);
+    }
+
 }

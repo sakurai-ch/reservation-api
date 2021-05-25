@@ -9,12 +9,7 @@ class ManagerController extends Controller
 {
     public function get(Request $request)
     {
-        // $param = "";
-        // if ($request->store_id == null) {
-            $param = Manager::get_stores_name();
-        // } else {
-            // $param = Manager::get_store_manager($request);
-        // }
+        $param = Manager::get_stores_name();
         return response()->json([
             'message' => 'Manager got successfully',
             'data' => $param
@@ -37,11 +32,18 @@ class ManagerController extends Controller
         ], 201);
     }
 
-    // public function delete(Request $request)
-    // {
-    //     Manager::delete_manager($request);
-    //     return response()->json([
-    //         'message' => 'Manager deleted successfully',
-    //     ], 200);
-    // }
+    public function delete(Request $request)
+    {
+        $check = auth()->user()->administrator;
+        if (!$check) {
+            return response()->json([
+                'message' => 'unauthorized',
+            ], 401);
+        }
+
+        Manager::delete_manager($request);
+        return response()->json([
+            'message' => 'Manager deleted successfully',
+        ], 200);
+    }
 }
