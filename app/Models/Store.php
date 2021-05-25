@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
 class Store extends Model
@@ -59,13 +58,13 @@ class Store extends Model
             ]);
     }
 
-    public static function create_store($store_data)
-    {
-        $param = Store::cretae([
-                'store_name' => $store_data->store_name,,
-            ]);
-        return $param;
-    }
+    // public static function create_store($store_data)
+    // {
+    //     $param = Store::cretae([
+    //             'store_name' => $store_data->store_name,,
+    //         ]);
+    //     return $param;
+    // }
 
     public function area()
     {

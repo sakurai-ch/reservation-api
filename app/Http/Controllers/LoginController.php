@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-// use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -12,8 +11,6 @@ class LoginController extends Controller
     public function post(Request $request)
     {
         $items = User::where('email', $request->email)->first();
-        // $token = Auth::guard('api')
-            // ->attempt(['email' => $request->email, 'password' => $request->password]);
         $token = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
 
         if ($token) {
@@ -22,7 +19,6 @@ class LoginController extends Controller
                 'auth' => true,
                 'access_token' => $token,
                 'token_type' => 'bearer',
-                // 'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
                 'expires_in' => Auth::factory()->getTTL() * 60
             ], 200);
         } else {
