@@ -22,7 +22,7 @@ class Manager extends Model
 
     public static function post_manager($manager_data)
     {
-        $param = Manager::create([
+        $param = Manager::insert([
             'user_id' => $manager_data->user_id,
             'store_id' => $manager_data->store_id,
         ]);
